@@ -56,3 +56,6 @@ def word_scan():
 
 # Calling the function to do the stuff :)
 word_scan()
+
+# Prevent window from closing
+input("Press Enter to Exit: ")
