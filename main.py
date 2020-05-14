@@ -6,38 +6,39 @@
 
 # Imports / Dependencies
 import re
-# Placeholder for full text story
+
+# Variables for original story with blanks
 story_file = open("story.txt","r")
 story = story_file.read()
 story2 = ""
 
+# Main function for reading and modifiying labels
 def word_scan(): 
+    # Creating another variable to work with rather than directly modifying
     story2 = story
-    # wow = story2.count("[adjective" + str(1) + "]")
-    # start = story2.find("[adjective") + len("[adjective")
-    # end = story2.find("]")
-    # substring = story2[start:end]
-    # print(substring)
     
+    # Search for labels with []
     regex = r"(?<=\[)(.*?)(?=\])"
     
     matches = re.findall(regex, story2)
     
+    # Make blank list in preperations for appending changes below
     new = [] 
-    
-    # old = ['[adjective1]','[adjective2]','[verb_ing1]']
 
+    # Utilize range and i variable to keep appending changes until end of matches
     for i in range(len(matches)):
         
         new.append(input(str(matches[i] + ": ")))
         story2 = story2.replace(matches[i],new[i])
 
+    # Printing output
     print("Blanks / Replacements: \n")    
     print(matches)  
     print("\n")
     print(story2)
     print("\n")
     
+    # Writing to new file and closing files
     story_file2 = open("story_modified.txt", "w+")
     story_file2.write(story2)
     story_file.close
@@ -52,5 +53,6 @@ def word_scan():
         #     groupNum = groupNum + 1
             
         #     print ("Group {groupNum} found at {start}-{end}: {group}".format(groupNum = groupNum, start = match.start(groupNum), end = match.end(groupNum), group = match.group(groupNum)))
-    
+
+# Calling the function to do the stuff :)
 word_scan()
