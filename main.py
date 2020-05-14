@@ -1,4 +1,8 @@
 # This is a simple Python-based game imitating the classic game of Mad Libs. Follow the prompts, and get a funny story!
+# Directions:
+# In the same directory as this script, place a "story.txt" file. Inside of this file, have blanks as follows: [adjective], [noun], etc.
+# Modified story (story2) is printed and then writen to "story_modified.txt"
+# This file will be created if it doesn't exist, and will be overwritten if it does exist
 
 # Imports / Dependencies
 import re
