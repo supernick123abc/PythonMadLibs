@@ -6,11 +6,88 @@
 
 # Imports / Dependencies
 import re
+from PyQt5 import QtCore, QtGui, QtWidgets
 
 # Variables for original story with blanks
 story_file = open("story.txt","r")
 story = story_file.read()
 story2 = ""
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(800, 600)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.title = QtWidgets.QLabel(self.centralwidget)
+        self.title.setGeometry(QtCore.QRect(260, 20, 284, 52))
+        self.title.setBaseSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setPointSize(32)
+        self.title.setFont(font)
+        self.title.setObjectName("title")
+        self.frame = QtWidgets.QTextEdit(self.centralwidget)
+        self.frame.setGeometry(QtCore.QRect(20, 80, 761, 411))
+        self.frame.setBaseSize(QtCore.QSize(0, 0))
+        self.frame.setFrameShape(QtWidgets.QTextEdit.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QTextEdit.Raised)
+        self.frame.setObjectName("frame")
+        self.frame.setReadOnly(True)
+        self.frame.setText(story)
+        self.horizontalLayoutWidget = QtWidgets.QWidget(self.centralwidget)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 490, 761, 80))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.save = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.save.setObjectName("save")
+        self.horizontalLayout.addWidget(self.save)
+        self.open = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.open.setObjectName("open")
+        self.horizontalLayout.addWidget(self.open)
+        self.quit = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.quit.setObjectName("quit")
+        self.horizontalLayout.addWidget(self.quit)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 21))
+        self.menubar.setObjectName("menubar")
+        self.menuFile = QtWidgets.QMenu(self.menubar)
+        self.menuFile.setObjectName("menuFile")
+        MainWindow.setMenuBar(self.menubar)
+        self.actionExit = QtWidgets.QAction(MainWindow)
+        self.actionExit.setObjectName("actionExit")
+        self.menuFile.addAction(self.actionExit)
+        self.menubar.addAction(self.menuFile.menuAction())
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.title.setText(_translate("MainWindow", "PythonMadLibs"))
+        self.save.setText(_translate("MainWindow", "Save Modified Story"))
+        self.open.setText(_translate("MainWindow", "Open Modified Story"))
+        self.quit.setText(_translate("MainWindow", "Exit"))
+        self.menuFile.setTitle(_translate("MainWindow", "File"))
+        self.actionExit.setText(_translate("MainWindow", "Exit"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())
+
+
 
 # Main function for reading and modifiying labels
 def word_scan(): 
